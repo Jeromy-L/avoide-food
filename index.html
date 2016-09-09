@@ -1,96 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>你能撑过10秒吗</title>
-    <style>
-        html,body{
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <title>你能逃离北二的控制吗</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
 </head>
 <body>
     <canvas id="canvas" width="300px" height="300px">您的浏览器不支持canvas</canvas>
     <div style="display: none;">
-        <img id="star_img" src="http://wx.karlew.com/star/star.png">
+        <img id="star_img" src="http://wx.karlew.com/star/star.png" ></img>
     </div>
 </body>
-<script>
+<script type="text/javascript">
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
     var cw = window.innerWidth;
-	var ch = window.innerHeight;
-	canvas.width = cw;
-	canvas.height = ch;
-    
+    var ch = window.innerHeight;
+    canvas.width = cw;
+    canvas.height = ch;
     var starImg = document.getElementById("star_img");
-
     var star = {
         x:cw/2,
         y:ch/2,
         speedX:0,
         speedY:0,
-        size:60,
+        size: 60,
         time:0
     }
-    
     items = [];
     itemSize = 12;
     itemsCount = 0;
     itemsMax = 49;
     itemSpeed = 5;
-    
-    //先创建十个初始球类
+
+    //先创建是个初始球类
     for(var i=0;i<10;i++){
         pushItem();
     }
-    
-    //每0.2秒增加一个球
-    intPushItem = setInterval(pushItem, 200);
-    
-    function pushItem(){
+
+    //每隔0.2秒增加一个球
+    intPushItem = setInterval(pushItem,200);
+
+    function pushItem() {
         var randNum = parseInt(Math.random()*4);
         itemsCount++;
-        if(itemsCount>itemsMax){
+        if (itemsCount>itemsMax) {
             clearInterval(intPushItem);
             clearInterval(intDraw);
-            if(confirm("you win: "+itemsCount/5+"s, again?")){
+            if (confirm("you win: "+itemsCount/5+"s,again?")) {
                 location.reload();
             }
         }
         var item = {
             x:0,
             y:0,
-            speedX:0, 
-            speedY:0, 
-            covar:Math.random()+0.2  //自定义随机速度系数，为了让球类速度不一样
+            speedX:0,
+            speedY:0,
+            covar:Math.random()+0.2   //自定义随机速度系数，让球类的速度不一样
         }
-        switch (randNum) {
+        switch(randNum){
             case 0:
-                item.x=0
-                item.y=Math.random()*ch
+                item.x = 0;
+                item.y = Math.random()*ch;
                 break;
             case 1:
-                item.x=Math.random()*cw
-                item.y=0
+                item.x = Math.random()*cw;
+                item.y = 0;
                 break;
             case 2:
-                item.x=cw
-                item.y=Math.random()*ch
+                item.x = cw;
+                item.y = Math.random()*ch;
                 break;
             case 3:
-                item.x=Math.random()*cw
-                item.y=ch
+                item.x = Math.random()*cw;
+                item.y = ch;
                 break;
             default:
                 break;
         }
         items.push(item);
     }
-    
+
     setTime = 18;
     intDraw = setInterval(drawCanvas, setTime);
 
@@ -99,43 +90,42 @@
         drawStar();
         drawItem();
         //判断是否碰到四周边缘
-        if(star.x-star.size/2<0||star.y-star.size/2<0||star.x+star.size/2>cw||star.y+star.size/2>ch){
+        if (star.x-star.size/2<0||star.y-star.size/2<0||star.x+star.size/2>cw||star.y+star.size/2>ch) {
             clearInterval(intPushItem);
             clearInterval(intDraw);
-            if(confirm("you lose: "+itemsCount/5+"s, again?")){
+            if (confirm("you lose:"+itemsCount/5+"s,again?")) {
                 location.reload();
             }
         }
     }
-    
     function drawStar(){
         star.x += star.speedX;
         star.y += star.speedY;
-        ctx.save(); 
-		ctx.translate(star.x, star.y);  //重置始点坐标为星星中心点    
-		ctx.rotate(star.time * Math.PI / 180);  //旋转角度
-		ctx.beginPath();
-		ctx.drawImage(starImg,-star.size/2, -star.size/2,star.size,star.size);  
-		ctx.closePath();
+        ctx.save();
+        ctx.translate(star.x,star.y);  //重置起始点坐标为星星中心点
+        ctx.rotate(star.time*Math.PI/180);  //旋转的角度
+        ctx.beginPath();
+        ctx.drawImage(starImg,-star.size/2,-star.size/2,star.size,star.size);
+        ctx.closePath();
         ctx.restore();
-		star.time += 4;
+        star.time +=4;
     }
-    
+
     function drawItem(){
         items.forEach(function(item){
-            var dist = Math.sqrt(Math.pow(item.x-star.x,2) + Math.pow(item.y-star.y,2));
-            if(Math.abs(dist)<itemSize+star.size/2){
+            var dist = Math.sqrt(Math.pow(item.x-star.x,2)+Math.pow(item.y-star.y,2));
+            if (Math.abs(dist)<itemSize+star.size/2) {
                 clearInterval(intPushItem);
                 clearInterval(intDraw);
-                if(confirm("you lose: "+itemsCount/5+"s, again?")){
+                if (confirm("you lose: "+itemsCount/5+"s, again?")) {
                     location.reload();
                 }
             }
-            var speedNarrow = 0.007/setTime; //用于限制球类速度
-            if(Math.abs(item.speedX+(star.x-item.x)*speedNarrow)<=10){
+            var speedNarrow = 0.007/setTime;  //限制球的速度
+            if (Math.abs(item.speedX+(star.x-item.x)*speedNarrow)<=10) {
                 item.speedX += (star.x-item.x)*speedNarrow;
             }
-            if(Math.abs(item.speedY+(star.y-item.y)*speedNarrow)<=10){
+            if (Math.abs(item.speedY+(star.y-item.y)*speedNarrow)<=10) {
                 item.speedY += (star.y-item.y)*speedNarrow;
             }
             item.x += item.speedX*item.covar;
@@ -144,41 +134,22 @@
             ctx.arc(item.x, item.y, itemSize, 0, 360, false);
             ctx.closePath();
             ctx.fillStyle = "#D26962";
-			ctx.fill();
+            ctx.fill();
         })
     }
 
-    //PC端用拖动事件
-    //不结合onmousedown和onmouseup做成拖动的原因在于拖动的时候setInterval速度会受影响，导致球体速度变慢
-    var dragFlag = false;
-    canvas.onclick = function(event){
-        x=event.clientX;
-        y=event.clientY;
-        if(Math.abs(x-star.x)<=star.size/2&&Math.abs(y-star.y)<=star.size/2){
-            dragFlag = true;
-        }
-        console.log(dragFlag);
-    }
-    canvas.onmousemove = function(){
-        if(dragFlag){
-            star.x=event.clientX;
-            star.y=event.clientY;
-        }
-    }
-    
     //手机平板类用重力感应事件
-    window.addEventListener("deviceorientation", function(event){
-        if((event.gamma>=3&&event.gamma<=90)||(event.gamma<=-3&&event.gamma>=-90)){
+    window.addEventListener("deviceorientation",function(event){
+        if ((event.gamma>=3&&event.gamma<=90)||(event.gamma<=-3&&event.gamma>=-90)) {
             star.speedX = 0.5*event.gamma;
         }else{
             star.speedX = 0;
         }
-        if((event.beta>=3&&event.beta<=90)||(event.beta<=-3&&event.beta>=-90)){
+        if ((event.beta>=3&&event.beta<=90)||(event.beta<=-3&&event.beta>=-90)) {
             star.speedY = 0.5*event.beta;
         }else{
             star.speedY = 0;
         }
-    }, true);
-    
+    },true);
 </script>
 </html>
