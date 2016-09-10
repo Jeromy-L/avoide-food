@@ -104,9 +104,9 @@
         ctx.save();
         ctx.translate(star.x,star.y);  //重置起始点坐标为星星中心点
         ctx.rotate(star.time*Math.PI/180);  //旋转的角度
-        ctx.beginPath();
+        //ctx.beginPath();
         ctx.drawImage(starImg,-star.size/2,-star.size/2,star.size,star.size);
-        ctx.closePath();
+        //ctx.closePath();
         ctx.restore();
         star.time +=4;
     }
