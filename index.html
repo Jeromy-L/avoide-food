@@ -10,7 +10,9 @@
     <canvas id="canvas" width="300px" height="300px">您的浏览器不支持canvas</canvas>
     <div style="display: none;">
         <img id="emoji" src="emoji.png" ></img>
+        <img id="emoji1" src="emoji1.png"></img>
     </div>
+    <div id="first"></div>
 </body>
 <script type="text/javascript">
     var canvas = document.getElementById("canvas");
@@ -115,6 +117,8 @@
         items.forEach(function(item){
             var dist = Math.sqrt(Math.pow(item.x-star.x,2)+Math.pow(item.y-star.y,2));
             if (Math.abs(dist)<itemSize+star.size/2) {
+                starImg = document.getElementById("emoji1");
+                drawStar();
                 clearInterval(intPushItem);
                 clearInterval(intDraw);
                 if (confirm("you lose: "+itemsCount/5+"s, again?")) {
@@ -137,6 +141,26 @@
             ctx.fill();
         })
     }
+
+
+    //PC端用拖动事件
+    //不结合onmousedown和onmouseup做成拖动的原因在于拖动的时候setInterval速度会受影响，导致球体速度变慢
+    var dragFlag = false;
+    canvas.onclick = function(event){
+        x=event.clientX;
+        y=event.clientY;
+        if(Math.abs(x-star.x)<=star.size/2&&Math.abs(y-star.y)<=star.size/2){
+            dragFlag = true;
+        }
+        console.log(dragFlag);
+    }
+    canvas.onmousemove = function(){
+        if(dragFlag){
+            star.x=event.clientX;
+            star.y=event.clientY;
+        }
+    }
+
 
     //手机平板类用重力感应事件
     window.addEventListener("deviceorientation",function(event){
