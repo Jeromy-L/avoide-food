@@ -1,5 +1,68 @@
-html,body{
+html, body {
   overflow: hidden;
-  margin:0;
+  margin: 0;
   padding: 0;
-}
+  width: 100%;
+  height: 100%;
+  font-family: "Microsoft YaHei";
+  background-color: #55b599; }
+
+#bg {
+  position: absolute;
+  left: 15%;
+  top: 13%;
+  width: 70%;
+  height: auto; }
+
+#first {
+  position: absolute;
+  width: 50%;
+  height: 30%;
+  border: 0.3em solid #f6fbf9;
+  left: 15%;
+  top: 27%;
+  background: #ddf1eb;
+  letter-spacing: 0.1em;
+  font-size: 3em;
+  line-height: 2em;
+  padding: 6% 10% 10% 10%; }
+  #first #title {
+    margin: 0;
+    font-size: 1.2em;
+    color: #54b698; }
+  #first p {
+    margin: 0;
+    color: #696969; }
+    #first p span {
+      font-size: 1.2em;
+      color: #ca8c8a; }
+
+#btn {
+  position: absolute;
+  padding-top: 3%;
+  width: 73%;
+  height: 7%;
+  top: 76%;
+  left: 15%;
+  font-size: 3.2em;
+  text-align: center;
+  color: #fefefe;
+  opacity: 0.9;
+  border-color: #357ebd;
+  border-radius: 25px;
+  background-color: #c85c5c; }
+  #btn:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74; }
+
+#footer {
+  position: absolute;
+  top: 89%;
+  width: 100%;
+  color: #fff;
+  opacity: 0.9;
+  text-align: center;
+  font-size: 2.2em; }
+
+/*# sourceMappingURL=index.css.map */

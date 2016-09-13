@@ -4,21 +4,33 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
     <title>你能逃离北二的控制吗</title>
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="style/index.css">
 </head>
 <body>
+    <img id="bg" src="bg.png"></img>
     <canvas id="canvas" width="300px" height="300px">您的浏览器不支持canvas</canvas>
     <div style="display: none;">
         <img id="emoji" src="emoji.png" ></img>
         <img id="emoji1" src="emoji1.png"></img>
     </div>
-    <div id="first"></div>
+    <div id="first">
+        <p id="title">游戏规则:</p>
+        <p>利用<span>重力感应</span>逃避铺天而来的食物，逃避北二的魔爪！！</p>
+    </div>
+    <div id="btn">游戏开始</div>
+    <div id="footer">created by华工创维俱乐部</div>
 </body>
 <script type="text/javascript">
-    var canvas = document.getElementById("canvas");
+    document.getElementById("btn").onclick=function(){
+        document.getElementById("first").style.display="none";
+        document.getElementById("bg").style.display="none";
+        document.getElementById("btn").style.display="none";
+        document.getElementById("footer").style.display="none";
+        var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
     var cw = window.innerWidth;
     var ch = window.innerHeight;
+    //document.getElementById("first")
     canvas.width = cw;
     canvas.height = ch;
     var starImg = document.getElementById("emoji");
@@ -175,5 +187,7 @@
             star.speedY = 0;
         }
     },true);
+    }
+    
 </script>
 </html>
