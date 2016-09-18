@@ -1,3 +1,7 @@
+a:-webkit-any-link {
+  text-decoration: none;
+  color: #000; }
+
 html, body {
   overflow: hidden;
   margin: 0;
@@ -13,6 +17,14 @@ html, body {
   top: 13%;
   width: 70%;
   height: auto; }
+
+#share {
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.share {
+  opacity: 1; }
 
 #first {
   position: absolute;
@@ -68,5 +80,43 @@ html, body {
 .back {
   background-image: url(../bg1.jpg);
   background-size: 100% 100%; }
+
+#confirm {
+  display: none;
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  width: 90%;
+  height: 20%;
+  background-color: #eaeaea;
+  color: #000;
+  border-radius: 20px; }
+  #confirm #text {
+    width: 100%;
+    height: 45%;
+    font-size: 3em;
+    text-align: center;
+    padding-top: 5%; }
+  #confirm .btn-group {
+    position: relative;
+    height: 40%;
+    vertical-align: middle;
+    font-size: 3em;
+    font-weight: normal;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #bebebe;
+    border-bottom: transparent;
+    border-radius: 0 0 20px 20px; }
+    #confirm .btn-group #left {
+      color: #000;
+      border-right: 2px solid #bebebe; }
+    #confirm .btn-group .btn {
+      position: relative;
+      float: left;
+      width: 49%;
+      height: 80%;
+      padding-top: 3%;
+      color: #55b599; }
 
 /*# sourceMappingURL=index.css.map */
