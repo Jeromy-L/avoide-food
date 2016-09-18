@@ -141,7 +141,6 @@
                 clearInterval(intDraw);
                 document.getElementById("text").innerHTML="you lose: "+(itemsCount-10)/5+"s";
                 confirm.style.display="block";
-                body.style.opcaity="0.8";
                 share.style.display="block";
                 
             }
@@ -169,9 +168,6 @@
                     clearInterval(intDraw);
                     document.getElementById("text").innerHTML="you lose: "+(itemsCount-10)/5+"s";
                     confirm.style.display="block";
-                    canvas.style.opacity="0.4";
-                    confirm.opacity="1";
-                    share.style.opacity="1";
                     share.style.display="block";
                 }
                 var speedNarrow = 0.007/setTime;  //限制球的速度
