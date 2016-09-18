@@ -197,57 +197,101 @@
             }
         },true);
     }
-    var imgUrl = "emoji.png";
-    var lineLink = window.location.href;
-    var descContent = '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s';
-    var shareTitle = '神奇的北二饭堂';
-    var appid = '';
+
+
+     wx.config({
+            debug: false,
+            appId: '微-信，公众号提供的AppId',
+            timestamp: '这里是时间戳',
+            nonceStr: 'GoodBlessYou',
+            signature: '这里是签名',
+            jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage'
+            ]
+        });
+        wx.ready(function () {
+            // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+            wx.onMenuShareTimeline({
+                title: '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s',
+                link: window.location.href,
+                imgUrl: 'emoji.png',
+                trigger: function (res) {
+                    // alert("分享到朋友圈按钮点击");        
+                },
+                success: function (res) {
+                },
+                cancel: function (res) {
+                    // alert('已取消');
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+    // var imgUrl = "emoji.png";
+    // var lineLink = window.location.href;
+    // var descContent = '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s';
+    // var shareTitle = '神奇的北二饭堂';
+    // var appid = '';
     
-    function shareFriend() {
-        WeixinJSBridge.invoke('sendAppMessage',{
-            "appid": appid,
-            "img_url": imgUrl,
-            "img_width": "200",
-            "img_height": "200",
-            "link": lineLink,
-            "desc": descContent,
-            "title": shareTitle
-        }, function(res) {
-            //_report('send_msg', res.err_msg);
-        })
-    }
-    function shareTimeline() {
-        WeixinJSBridge.invoke('shareTimeline',{
-            "img_url": imgUrl,
-            "img_width": "200",
-            "img_height": "200",
-            "link": lineLink,
-            "desc": descContent,
-            "title": shareTitle
-        }, function(res) {
-               //_report('timeline', res.err_msg);
-        });
-    }
-    function shareWeibo() {
-        WeixinJSBridge.invoke('shareWeibo',{
-            "content": descContent,
-            "url": lineLink,
-        }, function(res) {
-            //_report('weibo', res.err_msg);
-        });
-    }
-    // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
-    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-        // 发送给好友
-        WeixinJSBridge.on('menu:share:appmessage', function(argv){
-            shareFriend();
-        });
-        // 分享到朋友圈
-        WeixinJSBridge.on('menu:share:timeline', function(argv){
-            shareTimeline();
-        });
-        // 分享到微博
-        WeixinJSBridge.on('menu:share:weibo', function(argv){
-            shareWeibo();
-        });
-    }, true);
+    // function shareFriend() {
+    //     WeixinJSBridge.invoke('sendAppMessage',{
+    //         "appid": appid,
+    //         "img_url": imgUrl,
+    //         "img_width": "200",
+    //         "img_height": "200",
+    //         "link": lineLink,
+    //         "desc": descContent,
+    //         "title": shareTitle
+    //     }, function(res) {
+    //         //_report('send_msg', res.err_msg);
+    //     })
+    // }
+    // function shareTimeline() {
+    //     WeixinJSBridge.invoke('shareTimeline',{
+    //         "img_url": imgUrl,
+    //         "img_width": "200",
+    //         "img_height": "200",
+    //         "link": lineLink,
+    //         "desc": descContent,
+    //         "title": shareTitle
+    //     }, function(res) {
+    //            //_report('timeline', res.err_msg);
+    //     });
+    // }
+    // function shareWeibo() {
+    //     WeixinJSBridge.invoke('shareWeibo',{
+    //         "content": descContent,
+    //         "url": lineLink,
+    //     }, function(res) {
+    //         //_report('weibo', res.err_msg);
+    //     });
+    // }
+    // // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+    // document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    //     // 发送给好友
+    //     WeixinJSBridge.on('menu:share:appmessage', function(argv){
+    //         shareFriend();
+    //     });
+    //     // 分享到朋友圈
+    //     WeixinJSBridge.on('menu:share:timeline', function(argv){
+    //         shareTimeline();
+    //     });
+    //     // 分享到微博
+    //     WeixinJSBridge.on('menu:share:weibo', function(argv){
+    //         shareWeibo();
+    //     });
+    // }, true);
