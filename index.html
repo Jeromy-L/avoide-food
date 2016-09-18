@@ -138,6 +138,8 @@
             drawItem();
             //判断是否碰到四周边缘
             if (star.x-star.size/2<0||star.y-star.size/2<0||star.x+star.size/2>cw||star.y+star.size/2>ch) {
+                starImg = document.getElementById("emoji1");
+                drawStar();
                 clearInterval(intPushItem);
                 clearInterval(intDraw);
                 document.getElementById("text").innerHTML="you lose: "+(itemsCount-10)/5+"s";
