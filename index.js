@@ -58,7 +58,7 @@
         function pushItem() {
             var randNum = parseInt(Math.random()*4);
             itemsCount++;
-            if (itemsCount>(itemsMax-10)) {
+            if (itemsCount>itemsMax) {
                 clearInterval(intPushItem);
                 clearInterval(intDraw);
                 document.getElementById("text").innerHTML="you win: "+(itemsCount-10)/5+"s";
