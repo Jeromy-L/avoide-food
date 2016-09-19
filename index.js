@@ -21,8 +21,23 @@
     left.onclick=function(){
         confirm.style.display="none";
         share.style.display="none";
-        document.title = '你能逃离北二的控制吗';
+        //document.title = '你能逃离北二的控制吗';
+        var title = '你能逃离北二的控制吗';
+        changeTitle(title);
         game();
+    }
+    function changeTitle(string){
+        var body = document.getElementsByTagName('body')[0];
+        document.title = string;
+        var iframe = document.createElement("iframe");
+        iframe.setAttribute("src", "loading.png");
+        iframe.addEventListener('load', function() {
+        setTimeout(function() {
+          iframe.removeEventListener('load');
+            document.body.removeChild(iframe);
+          }, 0);
+        });
+        document.body.appendChild(iframe);
     }
     function game(){
         var canvas = document.getElementById("canvas");
@@ -63,7 +78,8 @@
                 clearInterval(intPushItem);
                 clearInterval(intDraw);
                 document.getElementById("text").innerHTML="you win: "+(itemsCount-10)/5+"s";
-                document.title = '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s';
+                var title = '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s';
+                changeTitle(title);
                 confirm.style.display="block";
                 share.style.display="block";
                 
@@ -112,7 +128,8 @@
                 clearInterval(intPushItem);
                 clearInterval(intDraw);
                 document.getElementById("text").innerHTML="you lose: "+(itemsCount-10)/5+"s";
-                document.title = '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s';
+                var title = '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s';
+                changeTitle(title);
                 confirm.style.display="block";
                 share.style.display="block";
                 
@@ -140,7 +157,8 @@
                     clearInterval(intPushItem);
                     clearInterval(intDraw);
                     document.getElementById("text").innerHTML="you lose: "+(itemsCount-10)/5+"s";
-                    document.title = '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s';
+                    var title = '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s';
+                    changeTitle(title);
                     confirm.style.display="block";
                     share.style.display="block";
                 }
