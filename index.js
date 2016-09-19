@@ -21,6 +21,7 @@
     left.onclick=function(){
         confirm.style.display="none";
         share.style.display="none";
+        document.title = '你能逃离北二的控制吗';
         game();
     }
     function game(){
@@ -44,7 +45,7 @@
         items = [];
         itemSize = 24;
         itemsCount = 0;
-        itemsMax = 59;
+        itemsMax = 84;
         itemSpeed = 5;
 
         //先创建十个初始球类
@@ -62,6 +63,7 @@
                 clearInterval(intPushItem);
                 clearInterval(intDraw);
                 document.getElementById("text").innerHTML="you win: "+(itemsCount-10)/5+"s";
+                document.title = '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s';
                 confirm.style.display="block";
                 share.style.display="block";
                 
@@ -110,6 +112,7 @@
                 clearInterval(intPushItem);
                 clearInterval(intDraw);
                 document.getElementById("text").innerHTML="you lose: "+(itemsCount-10)/5+"s";
+                document.title = '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s';
                 confirm.style.display="block";
                 share.style.display="block";
                 
@@ -137,6 +140,7 @@
                     clearInterval(intPushItem);
                     clearInterval(intDraw);
                     document.getElementById("text").innerHTML="you lose: "+(itemsCount-10)/5+"s";
+                    document.title = '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s';
                     confirm.style.display="block";
                     share.style.display="block";
                 }
@@ -199,37 +203,50 @@
     }
 
 
-     wx.config({
-            debug: false,
-            appId: '微-信，公众号提供的AppId',
-            timestamp: '这里是时间戳',
-            nonceStr: 'GoodBlessYou',
-            signature: '这里是签名',
-            jsApiList: [
-                'checkJsApi',
-                'onMenuShareTimeline',
-                'onMenuShareAppMessage'
-            ]
-        });
-        wx.ready(function () {
-            // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
-            wx.onMenuShareTimeline({
-                title: '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s',
-                link: window.location.href,
-                imgUrl: 'emoji.png',
-                trigger: function (res) {
-                    // alert("分享到朋友圈按钮点击");        
-                },
-                success: function (res) {
-                },
-                cancel: function (res) {
-                    // alert('已取消');
-                },
-                fail: function (res) {
-                    alert(JSON.stringify(res));
-                }
-            });
-        });
+     // wx.config({
+     //        debug: false,
+     //        appId: 'wx53f3924f225e6704',
+     //        timestamp: '1414587457',
+     //        nonceStr: 'Wm3WZYTPz0wzccnW',
+     //        signature: 'SHA1',
+     //        jsApiList: [
+     //            'checkJsApi',
+     //            'onMenuShareTimeline',
+     //            'onMenuShareAppMessage'
+     //        ]
+     //    });
+     //    wx.ready(function () {
+     //        // 2.1 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+     //        wx.onMenuShareTimeline({
+     //            title: '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s',
+     //            link: window.location.href,
+     //            imgUrl: 'emoji.png',
+     //            trigger: function (res) {
+     //                // alert("分享到朋友圈按钮点击");        
+     //            },
+     //            success: function (res) {
+     //            },
+     //            cancel: function (res) {
+     //                // alert('已取消');
+     //            },
+     //            fail: function (res) {
+     //                alert(JSON.stringify(res));
+     //            }
+     //        });
+     //        // 2.2 监听“分享给朋友”按钮点击、自定义分享内容及分享结果接口
+
+     //        wx.onMenuShareAppMessage({
+     //            title: '我在逃离北二饭堂游戏中撑了'+(itemsCount-10)/5+'s',
+     //            link: window.location.href,
+     //            imgUrl: 'emoji.png',
+     //            success: function () { 
+     //                // 用户确认分享后执行的回调函数
+     //            },
+     //            cancel: function () { 
+     //                // 用户取消分享后执行的回调函数
+     //            }
+     //        });
+     //    });
 
 
 
