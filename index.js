@@ -30,7 +30,7 @@
         iframe.setAttribute("src", "loading.png");
         iframe.addEventListener('load', function() {
         setTimeout(function() {
-          iframe.removeEventListener('load');
+          iframe.removeEventListener('load', function(){});
             document.body.removeChild(iframe);
           }, 0);
         });
