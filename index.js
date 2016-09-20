@@ -24,17 +24,23 @@
         game();
     }
     function changeTitle(string){
-        var body = document.getElementsByTagName('body')[0];
+        var u = navigator.userAgent;
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
         document.title = string;
-        var iframe = document.createElement("iframe");
-        iframe.setAttribute("src", "loading.png");
-        iframe.addEventListener('load', function() {
-        setTimeout(function() {
-          iframe.removeEventListener('load', function(){});
-            document.body.removeChild(iframe);
-          }, 0);
-        });
-        document.body.appendChild(iframe);
+        if (isiOS) {
+            var body = document.getElementsByTagName('body')[0];
+            
+            var iframe = document.createElement("iframe");
+            iframe.setAttribute("src", "loading.png");
+            iframe.addEventListener('load', function() {
+            setTimeout(function() {
+              iframe.removeEventListener('load', function(){});
+                document.body.removeChild(iframe);
+              }, 0);
+            });
+            document.body.appendChild(iframe);
+        }
+        
     }
     function game(){
         var canvas = document.getElementById("canvas");
